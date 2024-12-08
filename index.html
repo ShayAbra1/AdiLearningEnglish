@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Learning Adventure</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f0f8ff;
+    }
+    .container {
+      width: 80%;
+      max-width: 900px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .sentences, .images {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .sentence, .image {
+      padding: 10px;
+      background: #e3f2fd;
+      border: 2px solid #90caf9;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+    }
+    .sentence:hover, .image:hover {
+      background: #bbdefb;
+    }
+    .matched {
+      background: #c8e6c9 !important;
+      border-color: #66bb6a !important;
+      pointer-events: none;
+    }
+    .score {
+      grid-column: 1 / span 2;
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="sentences">
+    <div class="sentence" data-match="1">I am eating vegetables</div>
+    <div class="sentence" data-match="2">The girl can wash her hands</div>
+    <div class="sentence" data-match="3">I am happy</div>
+    <div class="sentence" data-match="4">Can you see the vegetables?</div>
+    <div class="sentence" data-match="5">The girl is washing dishes</div>
+  </div>
+  <div class="images">
+    <div class="image" data-match="3">&#x1F604;</div> <!-- Smiling Face Emoji -->
+    <div class="image" data-match="1">&#x1F957;</div> <!-- Salad Emoji -->
+    <div class="image" data-match="2">&#x1F64F;</div> <!-- Hands Being Washed Emoji -->
+    <div class="image" data-match="4">&#x1F440;</div> <!-- Eyes Emoji -->
+    <div class="image" data-match="5">&#x1F6BF;</div> <!-- Dish Emoji -->
+  </div>
+  <div class="score">Score: 0</div>
+</div>
+
+<script>
+  let selectedSentence = null;
+  let score = 0;
+
+  const sentences = document.querySelectorAll('.sentence');
+  const images = document.querySelectorAll('.image');
+  const scoreDisplay = document.querySelector('.score');
+
+  sentences.forEach(sentence => {
+    sentence.addEventListener('click', () => {
+      if (selectedSentence) {
+        selectedSentence.classList.remove('selected');
+      }
+      selectedSentence = sentence;
+      sentence.classList.add('selected');
+    });
+  });
+
+  images.forEach(image => {
+    image.addEventListener('click', () => {
+      if (selectedSentence) {
+        const match = selectedSentence.getAttribute('data-match');
+        if (match === image.getAttribute('data-match')) {
+          selectedSentence.classList.add('matched');
+          image.classList.add('matched');
+          score++;
+          scoreDisplay.textContent = `Score: ${score}`;
+        } else {
+          alert('Try again!');
+        }
+        selectedSentence.classList.remove('selected');
+        selectedSentence = null;
+      } else {
+        alert('Select a sentence first!');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
