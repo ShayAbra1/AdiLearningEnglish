@@ -56,6 +56,9 @@
       cursor: pointer;
       transition: transform 0.2s;
     }
+    .image {
+      font-size: 36px; /* פי 2 מהמקורי */
+    }
     .word:hover, .image:hover {
       background: #ffd54f;
       transform: scale(1.1);
@@ -79,17 +82,17 @@
 
 <div class="container">
   <div class="header">Match the Words with the Pictures!</div>
-  <div class="instructions">לחץ על המילה ואז על התמונה המתאימה.</div>
+  <div class="instructions">Click on a word and then on the matching picture.</div>
   <div class="words">
-    <div class="word" data-match="1">Vegetables</div>
-    <div class="word" data-match="2">Can</div>
     <div class="word" data-match="3">Girl</div>
     <div class="word" data-match="4">I am</div>
+    <div class="word" data-match="2">Can</div>
     <div class="word" data-match="5">Wash</div>
+    <div class="word" data-match="1">Vegetables</div>
   </div>
   <div class="images">
     <div class="image" data-match="1">&#x1F957;</div> <!-- Salad Emoji -->
-    <div class="image" data-match="2">&#x1F4E6;</div> <!-- Can Emoji -->
+    <div class="image" data-match="2">יכול/ה</div> <!-- Text in Hebrew -->
     <div class="image" data-match="3">&#x1F467;</div> <!-- Girl Emoji -->
     <div class="image" data-match="4">&#x1F600;</div> <!-- Smiling Face Emoji -->
     <div class="image" data-match="5">&#x1F9FC;</div> <!-- Soap Emoji -->
